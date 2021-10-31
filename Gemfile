@@ -8,7 +8,6 @@ group :jekyll_plugins do
     gem 'jekyll-github-metadata'
     gem 'jekyll-paginate-v2'
     gem 'jekyll-responsive-image'
-    gem 'jekyll-scholar'
     gem 'jekyll-sitemap'
     gem 'jekyll-target-blank'
     gem 'jekyll-twitter-plugin'

@@ -1,18 +1,22 @@
 ---
 layout: about
-title: about
 permalink: /
-description: <strong>Professional Software Engineer</strong>
-og_description: Francesco Zoffoli is a professional Software Engineer and book author, with experience in C++ and backend systems.
+title: Francesco Zoffoli
+subtitle: <strong>Professional Software Engineer</strong>
+description: Francesco Zoffoli is a professional Software Engineer and book author, with experience in C++ and backend systems.
 
 profile:
   align: right
   image: prof_pic.png
 
+seo:
+  type: Person
+
 news: false  # includes a list of news items
 social: true  # includes social icons at the bottom of the page
 
 # TODO add list of achievements similar to the news section with: talks, employment, graduation, etc..
+# TODO improve open graph tagging using the profile type
 
 ---
 

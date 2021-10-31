@@ -40,8 +40,7 @@ max_width: 800px
 # Open Graph
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
-serve_og_meta: true # Include Open Graph meta tags in the HTML head
-og_image: /assets/resized/prof_pic-480x640.png # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: false # Include Open Graph meta tags in the HTML head
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -143,6 +142,7 @@ plugins:
   - jekyll-github-metadata
   - jekyll-paginate-v2
   - jekyll-responsive-image
+  - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-target-blank
   - jekyll-twitter-plugin
@@ -151,9 +151,13 @@ plugins:
 # Sitemap settings
 defaults:
   - scope:
-      path:            "assets/**/*.*"
+      path: "assets/**/*.*"
     values:
-      sitemap:         false
+      sitemap: false
+  - scope:
+      path: ""
+    values:
+      image: /assets/resized/prof_pic-480x640.png
 
 # Extras
 github: [metadata]

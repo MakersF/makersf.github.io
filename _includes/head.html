@@ -18,12 +18,13 @@
 {% if site.serve_og_meta %}
 <meta property="og:site_name" content="{{ site.description }}" />
 <meta property="og:type" content="object" />
-<meta property="og:title" content="{{ site.name }}" />
+<meta property="og:title" content="{{ page.title }}" />
 <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
-<meta property="og:description" content="{%- if page.og_description -%}{{ page.og_description }}{%- else -%}{{ page.title }}{%- endif -%}" />
-{% if page.og_image -%}{%- assign image_url = page.og_image -%}{%- else -%}{%- assign image_url = site.og_image -%}{%- endif -%}
-<meta property="og:image" content="{{ image_url | absolute_url  }}" />
+<meta property="og:description" content="{{ page.description }}" />
 {% endif %}
+
+<!-- SEO -->
+{% seo %}
 
 <!-- Bootstrap & MDB -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/{{ site.bootstrap.version }}/css/bootstrap.min.css" rel="stylesheet" integrity="{{ site.bootstrap.integrity.css }}" crossorigin="anonymous">

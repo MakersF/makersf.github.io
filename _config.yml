@@ -7,10 +7,8 @@ first_name: Francesco
 middle_name:
 last_name: Zoffoli
 email: francesco.zoffoli@hotmail.com
-description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Francesco Zoffoli's personal website and blog
-footer_text: >
-  Francesco Zoffoli © All rights reserved
+description: Francesco Zoffoli's personal website and blog # the ">" symbol means to ignore newlines until "footer_text:"
+footer_text:
 
 icon: 💻 # the emoji used as the favicon
 url: https://www.francescozoffoli.com # the base hostname & protocol for your site
@@ -29,7 +27,7 @@ impressum_path:  # set to path to include impressum link in the footer, use the 
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: true
+footer_fixed: false
 
 resume_location: francesco_zoffoli-CV.pdf
 
@@ -43,7 +41,7 @@ max_width: 800px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: assets\resized\prof_pic-480x640.png # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Social integration

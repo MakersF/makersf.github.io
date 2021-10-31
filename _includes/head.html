@@ -21,7 +21,8 @@
 <meta property="og:title" content="{{ site.name }}" />
 <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
 <meta property="og:description" content="{%- if page.og_description -%}{{ page.og_description }}{%- else -%}{{ page.title }}{%- endif -%}" />
-<meta property="og:image" content="{%- if page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}" />
+{% if page.og_image -%}{%- assign image_url = page.og_image -%}{%- else -%}{%- assign image_url = site.og_image -%}{%- endif -%}
+<meta property="og:image" content="{{ image_url | absolute_url  }}" />
 {% endif %}
 
 <!-- Bootstrap & MDB -->

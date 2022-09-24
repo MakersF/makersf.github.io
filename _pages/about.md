@@ -24,4 +24,4 @@ Francesco Zoffoli is a professional Software Engineer, public speaker and book a
 He is passionate about programming languages, maintainable software and distributed systems.
 
 Graduated in 2016 at Politecnico di Milano with a MSc in Computer Systems Engineering, he joined the industry working for Bloomberg LP building systems to enable collaboration of users.
-In 2020, he joined Facebook working on software monitoring systems.
+From 2020 he's being building on software monitoring systems at Facebook.

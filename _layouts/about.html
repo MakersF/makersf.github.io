@@ -40,16 +40,18 @@ layout: default
           {% for item in page.publications %}
             {% if item.type == "book" %}
               <tr>
-                <th scope="row">Book</th>
+                <th scope="row"><p>Book</p></th>
                 <td>
                   <h4>{{ item.title }}</h4>
-                  {{ item.publisher }}
-                  - ISBN: <a class="news-title" href="{{ item.publishing_link }}">{{ item.isbn }}</a>
+                  <p>
+                    {{ item.publisher }}
+                    - ISBN: <a class="news-title" href="{{ item.publishing_link }}">{{ item.isbn }}</a>
+                  </p>
                 </td>
               </tr>
             {% elsif item.type == "talk" %}
               <tr>
-                <th scope="row">Talk</th>
+                <th scope="row"><p>Talk</p></th>
                 <td>
                   <h4>
                     {{ item.title }}

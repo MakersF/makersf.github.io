@@ -32,6 +32,51 @@ layout: default
       {{ content }}
     </div>
 
+    {% if page.publications %}
+      <div>
+        <h2>Publications</h2>
+        <div class="table-responsive">
+          <table class="table table-sm table-borderless">
+          {% for item in page.publications %}
+            {% if item.type == "book" %}
+              <tr>
+                <th scope="row">Book</th>
+                <td>
+                  <h4>{{ item.title }}</h4>
+                  {{ item.publisher }}
+                  - ISBN: <a class="news-title" href="{{ item.publishing_link }}">{{ item.isbn }}</a>
+                </td>
+              </tr>
+            {% elsif item.type == "talk" %}
+              <tr>
+                <th scope="row">Talk</th>
+                <td>
+                  <h4>
+                    {{ item.title }}
+                  </h4>
+                  <div>
+                    <a class="news-title" href="{{ item.abstract_link }}">Abstract</a>
+                    {% if item.video_link %}
+                      - <a class="news-title" href="{{ item.publishing_link }}">Video</a>
+                    {% endif %}
+                  </div>
+                  <div>
+                    {% for venue in item.venues %}
+                      <a class="news-title" href="{{ venue.link }}">{{venue.name}}</a>
+                      {% if forloop.last != true %}
+                        |
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% endif %}
+
     {% if page.social %}
       <div class="social">
         <div class="contact-icons">

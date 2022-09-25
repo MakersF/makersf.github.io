@@ -15,6 +15,31 @@ seo:
 news: false  # includes a list of news items
 social: true  # includes social icons at the bottom of the page
 
+publications:
+  - type: book
+    title: C++ Fundamentals
+    publisher: Packt
+    publishing_link: https://www.packtpub.com/product/c-fundamentals/9781789801491
+    isbn: 9781789801491
+  - type: talk
+    title: How to Use Dependency Injection to Write Maintainable Software
+    venues:
+      - name: CppCon 2022
+        link: https://cppcon.org/
+    abstract_link: https://cppcon.digital-medium.co.uk/session/2022/how-to-use-dependency-injection-to-write-maintainable-software/
+    video_link: null
+  - type: talk
+    title: Automatically Process Your Operations in Bulk With Coroutines
+    venues:
+      - name: CppEurope 2022
+        link: https://cppeurope.com/
+      - name: CppCon 2021
+        link: https://cppcon.org/
+      - name: C++ London May 2020
+        link: https://www.meetup.com/cpplondon/
+    abstract_link: https://sched.co/nv2T
+    video_link: https://youtu.be/3R_Z5RO1AH4
+
 # TODO add list of achievements similar to the news section with: talks, employment, graduation, etc..
 # TODO improve open graph tagging using the profile type
 

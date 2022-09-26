@@ -43,10 +43,9 @@ layout: default
                 <th scope="row"><p>Book</p></th>
                 <td>
                   <h4>{{ item.title }}</h4>
-                  <p>
-                    {{ item.publisher }}
-                    - ISBN: <a class="news-title" href="{{ item.publishing_link }}">{{ item.isbn }}</a>
-                  </p>
+                  <div>
+                    <a class="news-title" href="{{ item.publishing_link }}">{{ item.publisher }} (ISBN: {{ item.isbn }})</a>
+                  </div>
                 </td>
               </tr>
             {% elsif item.type == "talk" %}

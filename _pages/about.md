@@ -26,8 +26,10 @@ publications:
     venues:
       - name: CppCon 2022
         link: https://cppcon.org/
+      - name: Meeting Cpp 2022
+        link: https://meetingcpp.com/
     abstract_link: https://cppcon.digital-medium.co.uk/session/2022/how-to-use-dependency-injection-to-write-maintainable-software/
-    video_link: null
+    video_link: https://youtu.be/l6Y9PqyK1Mc
   - type: talk
     title: Automatically Process Your Operations in Bulk With Coroutines
     venues:
@@ -49,4 +51,4 @@ Francesco Zoffoli is a professional Software Engineer, public speaker and book a
 He is passionate about programming languages, maintainable software and distributed systems.
 
 Graduated in 2016 at Politecnico di Milano with a MSc in Computer Systems Engineering, he joined the industry working for Bloomberg LP building systems to enable collaboration of users.
-From 2020 he's being building on software monitoring systems at Facebook.
+Since 2020 he's been building software monitoring systems at Facebook, focussing on detection and alerting.

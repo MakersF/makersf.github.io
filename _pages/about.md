@@ -22,6 +22,12 @@ publications:
     publishing_link: https://www.packtpub.com/product/c-fundamentals/9781789801491
     isbn: 9781789801491
   - type: talk
+    title: Coroutine Patterns and How to Use Them
+    venues:
+      - name: CppCon 2023
+        link: https://cppcon.org/
+    abstract_link: https://sched.co/1QtgK
+  - type: talk
     title: How to Use Dependency Injection to Write Maintainable Software
     venues:
       - name: CppCon 2022

@@ -2,52 +2,75 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [master, main, 'upgrade/**']
   pull_request:
-    branches:
-      - master
-      - main
+    branches: [master, main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    # Keep the legacy Ruby stack on a compatible, stable runner image.
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      JEKYLL_ENV: production
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Install image dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y imagemagick libmagickwand-dev
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-        bundler-cache: true
-    - name: Install deps
-      run: |
-        npm install -g mermaid.cli
-    - name: Setup deploy options
-      id: setup
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        if [[ ${GITHUB_REF} = refs/pull/*/merge ]]; then # pull request
-          echo "SRC_BRANCH=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
-          echo "NO_PUSH=--no-push" >> "$GITHUB_OUTPUT"
-        elif [[ ${GITHUB_REF} = refs/heads/* ]]; then # branch, e.g. master, source etc
-          echo "SRC_BRANCH=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
-        fi
-        echo "DEPLOY_BRANCH=gh-pages" >> "$GITHUB_OUTPUT"
-    - name: Deploy website 
-      env:
-        NO_PUSH: ${{ steps.setup.outputs.NO_PUSH }}
-        SRC_BRANCH: ${{ steps.setup.outputs.SRC_BRANCH }}
-        DEPLOY_BRANCH: ${{ steps.setup.outputs.DEPLOY_BRANCH }}
-      run: bin/deploy --verbose ${NO_PUSH} --src "$SRC_BRANCH" --deploy "$DEPLOY_BRANCH" <<< 'yes'
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install build and browser dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Check theme migration
+        run: |
+          bundle exec al-folio upgrade audit
+          bundle exec al-folio upgrade overrides audit
+      - name: Build website
+        run: bundle exec jekyll build --trace
+      - name: Check pages and navigation
+        run: npm test
+      - name: Save website artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: _site/
+          include-hidden-files: true
+      - name: Save browser results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-results
+          path: test-results/
+          if-no-files-found: ignore
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: site
+          path: _site
+      - name: Publish to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site

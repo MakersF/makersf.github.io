@@ -1,0 +1,6 @@
+{
+  "name": "francescozoffoli-site",
+  "private": true,
+  "scripts": { "test": "playwright test" },
+  "devDependencies": { "@playwright/test": "^1.56.1" }
+}

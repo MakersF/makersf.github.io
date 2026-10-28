@@ -1,7 +1,7 @@
 ---
 layout: about
 permalink: /
-title: Francesco Zoffoli
+title: about
 subtitle: <strong>Professional Software Engineer</strong>
 description: Francesco Zoffoli is a professional Software Engineer and book author, with experience in C++ and backend systems.
 
@@ -12,7 +12,11 @@ profile:
 seo:
   type: Person
 
-news: false  # includes a list of news items
+selected_papers: false
+announcements:
+  enabled: false
+latest_posts:
+  enabled: false
 social: true  # includes social icons at the bottom of the page
 
 publications:
@@ -27,6 +31,7 @@ publications:
       - name: CppCon 2023
         link: https://cppcon.org/
     abstract_link: https://sched.co/1QtgK
+    video_link: https://youtu.be/Iqrd9vsLrak
   - type: talk
     title: How to Use Dependency Injection to Write Maintainable Software
     venues:
@@ -58,3 +63,19 @@ He is passionate about programming languages, maintainable software and distribu
 
 Graduated in 2016 at Politecnico di Milano with a MSc in Computer Systems Engineering, he joined the industry working for Bloomberg LP building systems to enable collaboration of users.
 Since 2020 he's been building software monitoring systems at Facebook, focussing on detection and alerting.
+
+<div style="clear: both;"></div>
+
+## Publications
+
+{% for item in page.publications %}
+### {{ item.title }}
+
+{% if item.type == "book" %}
+Book — [{{ item.publisher }}]({{ item.publishing_link }}) (ISBN: {{ item.isbn }})
+{% else %}
+Talk — [Abstract]({{ item.abstract_link }}){% if item.video_link %} · [Video]({{ item.video_link }}){% endif %}
+
+{% for venue in item.venues %}[{{ venue.name }}]({{ venue.link }}){% unless forloop.last %} · {% endunless %}{% endfor %}
+{% endif %}
+{% endfor %}

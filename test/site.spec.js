@@ -36,7 +36,7 @@ test('homepage preserves biography, publications, assets and theme controls', as
     await menu.click();
     await expect(menu).toHaveAttribute('aria-expanded', 'true');
   }
-  await expect(page.locator('nav').getByRole('link', { name: 'blog', exact: true })).toBeVisible();
+  await expect(page.locator('nav').getByRole('link', { name: 'blog', exact: true })).toHaveCount(0);
   await expect(page.locator('nav').getByRole('link', { name: 'resume', exact: true })).toHaveAttribute('href', '/resume/');
   await page.locator('#light-toggle').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');

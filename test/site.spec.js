@@ -37,7 +37,8 @@ test('homepage preserves biography, publications, assets and theme controls', as
     await expect(menu).toHaveAttribute('aria-expanded', 'true');
   }
   await expect(page.locator('nav').getByRole('link', { name: 'blog', exact: true })).toHaveCount(0);
-  await expect(page.locator('nav').getByRole('link', { name: /^resume$/i })).toHaveAttribute('href', '/resume/');
+  await expect(page.locator('nav a.nav-link[href="/"]')).toContainText('About');
+  await expect(page.locator('nav').getByRole('link', { name: 'Resume', exact: true })).toHaveAttribute('href', '/resume/');
   await page.locator('#light-toggle').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   if (await menu.isVisible()) await menu.click();
@@ -50,6 +51,8 @@ test('blog, resume, error page and custom domain survive the migration', async (
   await expect(page.getByRole('heading', { name: 'Brainstorming Aloud' })).toBeVisible();
   await page.goto('/404.html');
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+  await page.goto('/resume/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Resume', exact: true })).toBeVisible();
   const pdf = await request.get('/assets/pdf/francesco_zoffoli-CV.pdf');
   expect(pdf.ok()).toBe(true);
   expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');

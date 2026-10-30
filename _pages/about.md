@@ -2,7 +2,7 @@
 layout: about
 permalink: /
 title: about
-subtitle: <strong>Professional Software Engineer</strong>
+subtitle: <strong>Software Engineer</strong>
 description: Francesco Zoffoli is a professional Software Engineer and book author, with experience in C++ and backend systems.
 
 profile:
